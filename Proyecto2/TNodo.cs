@@ -65,7 +65,7 @@ namespace Proyecto2
 
 
 
-        public bool eliminarLista(String a)
+        public bool eliminarLista()
         {
             eliminar();
             return true;
@@ -84,7 +84,7 @@ namespace Proyecto2
                 if (((TNodoAsig)p).GetAsig().Equals(nom))//si el nodo (que va desde 1) es igual al nodoactual
                     bus = true;
                 else
-                    p = p.siguiente;
+                    p = p.pSiguiente;
             }
 
             if (bus)

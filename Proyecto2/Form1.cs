@@ -26,14 +26,22 @@ namespace Proyecto2
 
         private void button1_Click(object sender, EventArgs e)//B1
         {
+            string Registro;
+
             if (TextAsignatura.Text == "" || TextHoras.Text == "")
             {
-                MessageBox.Show("Escriba los datos");
+                MessageBox.Show("Escriba los datos completos");
                 return;
             }
+
             else//quiere decir que el usuario escribio datos
             {
-            Lista1.anadirALista(TextAsignatura.Text, int.Parse(TextHoras.Text));//datos registrados
+            Lista1.anadirALista(TextAsignatura.Text, int.Parse(TextHoras.Text));
+            //Registro en lista
+            Registro = TextAsignatura.Text + "  -  " + TextHoras.Text;
+            listBox1.Items.Add(Registro);
+
+                //datos registrados
                 TextAsignatura.Text = "Escriba aqui";
                 TextHoras.Text = "";
                 TextAsignatura.Focus();
@@ -50,7 +58,7 @@ namespace Proyecto2
             if (Lista1.BuscarNodoAsignado(TextAsignatura.Text) == true)
             {
                 actual = (TNodoAsig)Lista1.eliminar();
-                Lista1.eliminarLista(TextAsignatura.Text);
+                //Lista1.eliminarLista(TextAsignatura.Text);
                 TextAsignatura.Text = "";
                 TextHoras.Text = "";
             }
@@ -66,7 +74,7 @@ namespace Proyecto2
                 return;
 
             }
-            else
+            else//primero vale algo diferente de null
             {
                 TextAsignatura.Text = Primero.GetAsig();
                 TextHoras.Text = (Primero.GetHoras()).ToString();
@@ -79,7 +87,7 @@ namespace Proyecto2
             if (Lista1.BuscarNodoAsignado(TextAsignatura.Text) == true)//Buscar nodo en el que esta el cursor
             {
                 anterior = (TNodoAsig)Lista1.getAntActual();
-                TextAsignatura.Text = anterior.GetAsig();
+                TextAsignatura.Text = anterior.GetAsig();///
                 TextHoras.Text = anterior.GetHoras().ToString();
             }
             else
@@ -96,7 +104,7 @@ namespace Proyecto2
             if(Lista1.BuscarNodoAsignado(TextAsignatura.Text)==true)//Buscar nodo en el que esta el cursor
             {
                 siguiente = (TNodoAsig)Lista1.getProxActual();
-                TextAsignatura.Text = siguiente.GetAsig();
+                TextAsignatura.Text = siguiente.GetAsig();//aqui 1ero sup falla
 
                 TextHoras.Text=siguiente.GetHoras().ToString();
             }
@@ -122,6 +130,22 @@ namespace Proyecto2
             TextAsignatura.Text=ultimo.GetAsig();
             TextHoras.Text = (ultimo.GetHoras()).ToString();
 
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Mostrar_Click(object sender, EventArgs e)
+        {
+            //int i;
+            //string Registro;
+            //Registro = TextAsignatura.Text +" - "+ TextHoras.Text;
+            //listBox1.Items.Add(Registro);
+            ////listBox1.Items.Clear();
+            
+            
         }
     }
 }

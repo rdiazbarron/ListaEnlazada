@@ -39,12 +39,14 @@
             this.BotonUltimo = new System.Windows.Forms.Button();
             this.TextAsignatura = new System.Windows.Forms.TextBox();
             this.TextHoras = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.Mostrar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(220, 80);
+            this.label1.Location = new System.Drawing.Point(35, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 16);
             this.label1.TabIndex = 0;
@@ -53,7 +55,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 143);
+            this.label2.Location = new System.Drawing.Point(35, 127);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 16);
             this.label2.TabIndex = 1;
@@ -71,7 +73,7 @@
             // 
             // BotonInsertar
             // 
-            this.BotonInsertar.Location = new System.Drawing.Point(293, 202);
+            this.BotonInsertar.Location = new System.Drawing.Point(155, 211);
             this.BotonInsertar.Name = "BotonInsertar";
             this.BotonInsertar.Size = new System.Drawing.Size(116, 85);
             this.BotonInsertar.TabIndex = 3;
@@ -81,7 +83,7 @@
             // 
             // BotonEliminar
             // 
-            this.BotonEliminar.Location = new System.Drawing.Point(442, 202);
+            this.BotonEliminar.Location = new System.Drawing.Point(304, 211);
             this.BotonEliminar.Name = "BotonEliminar";
             this.BotonEliminar.Size = new System.Drawing.Size(116, 85);
             this.BotonEliminar.TabIndex = 4;
@@ -91,7 +93,7 @@
             // 
             // BotonPrimero
             // 
-            this.BotonPrimero.Location = new System.Drawing.Point(149, 312);
+            this.BotonPrimero.Location = new System.Drawing.Point(11, 321);
             this.BotonPrimero.Name = "BotonPrimero";
             this.BotonPrimero.Size = new System.Drawing.Size(116, 85);
             this.BotonPrimero.TabIndex = 5;
@@ -101,7 +103,7 @@
             // 
             // BotonAnterior
             // 
-            this.BotonAnterior.Location = new System.Drawing.Point(293, 312);
+            this.BotonAnterior.Location = new System.Drawing.Point(155, 321);
             this.BotonAnterior.Name = "BotonAnterior";
             this.BotonAnterior.Size = new System.Drawing.Size(116, 85);
             this.BotonAnterior.TabIndex = 6;
@@ -111,7 +113,7 @@
             // 
             // BotonSiguiente
             // 
-            this.BotonSiguiente.Location = new System.Drawing.Point(442, 312);
+            this.BotonSiguiente.Location = new System.Drawing.Point(304, 321);
             this.BotonSiguiente.Name = "BotonSiguiente";
             this.BotonSiguiente.Size = new System.Drawing.Size(116, 85);
             this.BotonSiguiente.TabIndex = 7;
@@ -121,7 +123,7 @@
             // 
             // BotonUltimo
             // 
-            this.BotonUltimo.Location = new System.Drawing.Point(574, 312);
+            this.BotonUltimo.Location = new System.Drawing.Point(436, 321);
             this.BotonUltimo.Name = "BotonUltimo";
             this.BotonUltimo.Size = new System.Drawing.Size(116, 85);
             this.BotonUltimo.TabIndex = 8;
@@ -131,7 +133,7 @@
             // 
             // TextAsignatura
             // 
-            this.TextAsignatura.Location = new System.Drawing.Point(417, 77);
+            this.TextAsignatura.Location = new System.Drawing.Point(232, 61);
             this.TextAsignatura.Name = "TextAsignatura";
             this.TextAsignatura.Size = new System.Drawing.Size(238, 22);
             this.TextAsignatura.TabIndex = 9;
@@ -139,16 +141,38 @@
             // 
             // TextHoras
             // 
-            this.TextHoras.Location = new System.Drawing.Point(417, 137);
+            this.TextHoras.Location = new System.Drawing.Point(232, 121);
             this.TextHoras.Name = "TextHoras";
             this.TextHoras.Size = new System.Drawing.Size(238, 22);
             this.TextHoras.TabIndex = 10;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(522, 58);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(235, 228);
+            this.listBox1.TabIndex = 11;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // Mostrar
+            // 
+            this.Mostrar.Location = new System.Drawing.Point(613, 342);
+            this.Mostrar.Name = "Mostrar";
+            this.Mostrar.Size = new System.Drawing.Size(117, 47);
+            this.Mostrar.TabIndex = 12;
+            this.Mostrar.Text = "Mostrar";
+            this.Mostrar.UseVisualStyleBackColor = true;
+            this.Mostrar.Click += new System.EventHandler(this.Mostrar_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Mostrar);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.TextHoras);
             this.Controls.Add(this.TextAsignatura);
             this.Controls.Add(this.BotonUltimo);
@@ -180,6 +204,8 @@
         private System.Windows.Forms.Button BotonUltimo;
         private System.Windows.Forms.TextBox TextAsignatura;
         private System.Windows.Forms.TextBox TextHoras;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button Mostrar;
     }
 }
 

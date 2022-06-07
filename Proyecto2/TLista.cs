@@ -8,32 +8,35 @@ namespace Proyecto2
 {
     class TNodo
     {
-        public TNodo siguiente;
+        //declaramos punteros para lista doble
+        public TNodo pSiguiente;
+        public TNodo pPrevio;
         //public
 
-        public TNodo()
+        public TNodo()//Inicializamos punteros
         {
-            siguiente = null;
+            pSiguiente = null;
+            pPrevio = null;
         }
     }
 
 
 
-    internal class TLista
+    internal class TLista// declaramos nodos primero, ultimo, actual
     {
         public TNodo primero;
         public TNodo ultimo;
         public TNodo actual;
 
 
-        public TLista()//TENGO
+        public TLista()
         {
             primero = null;
             ultimo = null;
             actual = null;
         }
 
-        public void inicializar()//NO CREO QUE SIRVA
+        public void inicializar()
         {
             primero = null;
             ultimo = null;
@@ -53,37 +56,42 @@ namespace Proyecto2
             if (vacia())
             {
                 primero = nodo;
-                ultimo = nodo;
+                primero.pSiguiente = null;
+                primero.pPrevio = null;
+                ultimo = primero;
                 actual = nodo;
             }
 
 
-            else
-            {
-                ultimo.siguiente = nodo;
+            else//se inserta cuando hay mas de 0 nodos
+            { 
+                // 16 -27- null
+                ultimo.pSiguiente = nodo;// se vuelve autom el ultimo
+                nodo.pSiguiente = null;
+                nodo.pPrevio = ultimo;
                 ultimo = nodo;
                 actual = nodo;
             }
-            nodo.siguiente= null;
+            //nodo.siguiente= null;
+            //nodo.previo = ultimo;
 
         }
         public TNodo eliminarprimero()//TENGO
         {
+            //TNodo temp;
             if (vacia())
                 return null;
             else
             {
-                if (primero == ultimo)
+                if (primero == ultimo)//solo 1 elemento
+                {
                     inicializar();
+                }
                 else
                 {
-                    if (actual == primero)//infiero que cursor va estar en el 1ero siempre
-                    {
-                        actual = getProxActual();
-                        primero = primero.siguiente;
-
-                    }
-
+                primero = primero.pSiguiente;
+                primero.pPrevio = null;
+                actual = primero;
                 }
                 return primero;
             }
@@ -94,27 +102,49 @@ namespace Proyecto2
         {
             TNodo pTemp;
             if (actual == null)
-                return null;
+            { return null; }
             else
             {
                 if (actual == primero)
                 {
-                return eliminarprimero();
+                    return eliminarprimero();
                 }
-
                 else
-                    {
-                    pTemp = getAntActual();
-                    pTemp.siguiente = actual.siguiente;
-
-
+                {
                     if (actual == ultimo)
                     {
-                        ultimo = pTemp;
+                        // 16 27 -39-
+                        // 16 27
+                        actual.pPrevio.pSiguiente = null;
+                        ultimo = actual.pPrevio;
+                        actual = ultimo;
+                        return ultimo;
+                        //linea sigte cuanto elimino al ultimo crashea
+                        //que apunte al ultimo           
                     }
-                    actual = pTemp.siguiente;//RECOLOCA LA POSICION DEL CURSOR
-                    return actual;
+                    else
+                    {
+                        pTemp = actual.pPrevio;// 16 -27- 39 50  
+                        actual.pPrevio.pSiguiente = actual.pSiguiente;
+                        actual.pSiguiente.pPrevio = pTemp;
+                        actual = primero;
+                        return actual;
                     }
+
+
+
+
+                    //pTemp = getAntActual();
+                    //pTemp.siguiente = actual.siguiente;
+
+
+                    //if (actual == ultimo)
+                    //{
+                    //    ultimo = pTemp;
+                    //}
+                    //actual = pTemp.siguiente;//RECOLOCA LA POSICION DEL CURSOR
+                    //return actual;
+                }
             }
         }
 
@@ -135,7 +165,17 @@ namespace Proyecto2
         public TNodo getProxActual()//retorna el valor siguiente a donde esta el cursor
         {
             if (actual != null)
-                return actual.siguiente;
+            {
+                if (actual.pSiguiente == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return actual.pSiguiente;
+
+                }
+            }
             else
                 return null;
 
@@ -144,13 +184,13 @@ namespace Proyecto2
         public TNodo getAntActual()
         {
             TNodo pTemp;
-
+            // 16 -27- 35 46
             if ((actual != null) && (actual != primero))
             {
                 pTemp = primero;
-                while (pTemp.siguiente != actual)
+                while (pTemp.pSiguiente != actual)
                     {
-                    pTemp = pTemp.siguiente;
+                    pTemp = pTemp.pSiguiente;
                     }
                 return pTemp;
             }
