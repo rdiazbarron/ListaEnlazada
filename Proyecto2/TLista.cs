@@ -76,6 +76,35 @@ namespace Proyecto2
             //nodo.previo = ultimo;
 
         }
+
+        public void insertarInicio(TNodo nodo)//TENGO
+        {
+      
+                TNodo pTemp;
+                // actual=primero;
+                pTemp = primero;
+                primero = nodo;
+                primero.pPrevio = null;
+                primero.pSiguiente = pTemp;
+                pTemp.pPrevio = nodo;
+
+
+        }
+
+        public void insertarEnMedio(TNodo nodo)
+        {  
+            //Al agregar un nodo todas las referencias tienen que cambiar, en este caso son 3
+            TNodo pTemp;
+            TNodo pTemp2;
+            pTemp = actual;
+            pTemp2 = actual.pSiguiente;
+            
+            pTemp.pSiguiente = nodo;
+            nodo.pSiguiente = pTemp2;
+            pTemp2.pPrevio = nodo;
+        }
+
+                        
         public TNodo eliminarprimero()//TENGO
         {
             //TNodo temp;
@@ -130,20 +159,6 @@ namespace Proyecto2
                         actual = primero;
                         return actual;
                     }
-
-
-
-
-                    //pTemp = getAntActual();
-                    //pTemp.siguiente = actual.siguiente;
-
-
-                    //if (actual == ultimo)
-                    //{
-                    //    ultimo = pTemp;
-                    //}
-                    //actual = pTemp.siguiente;//RECOLOCA LA POSICION DEL CURSOR
-                    //return actual;
                 }
             }
         }

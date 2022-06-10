@@ -9,30 +9,37 @@ namespace Proyecto2
     struct nodoAsig //Estructura personalizada del nodo
     {
         public string nomb;
-        public int cantHrs;
+        public string raza;
+        public int edad;
     }
 
     internal class TNodoAsig : TNodo
     {
         public nodoAsig info; //Constructor de nodo personalizado
-        public TNodoAsig(string nom, int ch): base()
+        public TNodoAsig(string nom, string raza, int edad): base()
         {
             info.nomb = nom;
-            info.cantHrs = ch;
+            info.raza = raza;
+            info.edad = edad;
         }
 
 
 //Metodos Getters propios
-        public string GetAsig()
+        public string GetNomb()
         {
             return info.nomb;
         }
 
 
 
-        public int GetHoras()
+        public string GetRaza()
         {
-            return info.cantHrs;
+            return info.raza;
+        }
+
+        public int GetEdad()
+        {
+            return info.edad;
         }
     }
 
@@ -44,13 +51,20 @@ namespace Proyecto2
 
 //Metodos de TNodo llaman a metodos de TLista( pero mantienen cierto 
 //caracter implementativo
-        public void anadirALista(string a, int hr)
+        public void anadirALista(string nomb,string raza, int edad)
         {
-            insertar(new TNodoAsig(a, hr));
+            insertar(new TNodoAsig(nomb, raza ,edad));
         }
 
+        public void anadirAListaEnMedio(string nomb, string raza, int edad)
+        {
+            insertarEnMedio(new TNodoAsig(nomb, raza, edad));
+        }
 
-
+        public void anadirEnInicio(string nomb, string raza, int edad)
+        {
+            insertarInicio(new TNodoAsig(nomb, raza, edad));
+        }
         public TNodo sucessor(string a)
         {
             return getProxActual();
@@ -81,7 +95,7 @@ namespace Proyecto2
 
             while (p != null && bus == false)
             {
-                if (((TNodoAsig)p).GetAsig().Equals(nom))//si el nodo (que va desde 1) es igual al nodoactual
+                if (((TNodoAsig)p).GetNomb().Equals(nom))//si el nodo (que va desde 1) es igual al nodoactual
                     bus = true;
                 else
                     p = p.pSiguiente;
